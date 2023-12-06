@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <title>Login</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">E-Commerce</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index.html"
+                  >Products</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  href="profile.html"
+                  >Profile</a
+                >
+              </li>
+              <li class="nav-item"></li>
+            </ul>
+            <button type="button" class="btn btn-primary position-relative">
+              Cart
+              <span
+                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+              >
+                0
+                <span class="visually-hidden">Item count</span>
+              </span>
+            </button>
+            <button class="btn btn-primary ms-2" id="logoutBtn">Logout</button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- MAIN CONTENT  -->
+    <main>
+      <section class="container">
+        <div class="row py-5 px-4">
+          <div class="col-md-5 mx-auto">
+            <!-- Profile widget -->
+            <h1>Profile</h1>
+            <div class="bg-white shadow rounded overflow-hidden">
+              <div class="px-4 pt-0 pb-4 cover">
+                <div class="media align-items-end profile-head">
+                  <div class="profile mr-3">
+                    <img
+                      src="https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png"
+                      alt="..."
+                      width="130"
+                      class="rounded mb-2 mt-2"
+                    />
+                  </div>
+                  <div class="media-body mb-5">
+                    <h4 class="mt-0 mb-0" id="displayUsername"></h4>
+                    <p id="displayEmail"></p>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  class="btn btn-primary d-flex justify-content-between"
+                  data-toggle="modal"
+                  data-target="#editAccount"
+                  style="margin-right: 10px"
+                >
+                  Edit Account
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <button class="btn btn-primary">Edit account</button> -->
+        <div>
+          <!-- Modal for Add a product-->
+          <div
+            class="modal fade"
+            id="editAccount"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="editAccountLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="editAccountLabel">
+                    Edit account
+                  </h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <br />
+                <form id="registerForm" class="p-2">
+                  <div class="mb-3 form-floating">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="floatingInputName"
+                      placeholder=""
+                      required
+                    />
+                    <label for="floatingInputName">Name</label>
+                  </div>
+                  <div class="mb-3 form-floating">
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="floatingInputEmail"
+                      placeholder="name@example.com"
+                      required
+                    />
+                    <label for="floatingInputEmail">Email address</label>
+                  </div>
+
+                  <div class="mb-3 form-floating">
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="floatingPassword"
+                      placeholder="Password"
+                      required
+                    />
+                    <label for="floatingPassword">Password</label>
+                  </div>
+                  <div class="mb-3 form-floating">
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="floatingConfirmPassword"
+                      placeholder="ConfirmPassword"
+                      required
+                    />
+                    <label for="floatingConfirmPassword"
+                      >Confirm Password</label
+                    >
+                  </div>
+
+                  <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+                <div class="mb-3 px-2">
+                  <button class="btn btn-danger" id="deleteBtn">
+                    Delete account
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="profile.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Products</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <script defer src="./index.js"></script>
+
+  <body>
+    <header class="">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">E-Commerce</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index.html"
+                  >Products</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  href="profile.html"
+                  >Profile</a
+                >
+              </li>
+              <li class="nav-item dropdown" hidden>
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Settings
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item" href="#">Account Settings</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">Privacy Settings</a>
+                  </li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a hidden class="nav-link disabled" aria-disabled="true"
+                  >Disabled</a
+                >
+              </li>
+            </ul>
+
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target="#addaProduct"
+              style="margin-right: 10px"
+            >
+              Add a Product
+            </button>
+            <button type="button" class="btn btn-primary position-relative">
+              Cart
+              <span
+                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+              >
+                0
+                <span class="visually-hidden">Item count</span>
+              </span>
+            </button>
+
+            <!-- Modal for Add a product-->
+            <div
+              class="modal fade"
+              id="addaProduct"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="addaProductLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="addaProductLabel">
+                      Add a Product
+                    </h5>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <form id="addProductForm">
+                    <div class="modal-body">
+                      <div class="input-group">
+                        <span class="input-group-text">Product name</span>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="productName"
+                          required
+                        />
+                      </div>
+                      <br />
+
+                      <div class="input-group">
+                        <span class="input-group-text">Description</span>
+                        <textarea
+                          class="form-control"
+                          id="productDescription"
+                          required
+                        ></textarea>
+                      </div>
+                      <br />
+
+                      <div class="input-group">
+                        <span class="input-group-text">Price</span>
+                        <input
+                          type="number"
+                          class="form-control"
+                          id="productPrice"
+                          required
+                        />
+                        <span class="input-group-text">.00</span>
+                      </div>
+                      <br />
+
+                      <div class="input-group">
+                        <span class="input-group-text">Product image link</span>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="productImageLink"
+                        />
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-danger"
+                        data-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                      <button type="submit" class="btn btn-success">
+                        Add product
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <section class="container">
+        <h1 class="mt-5">Products</h1>
+
+        <!-- EDIT PRODUCT MODAL -->
+        <div
+          class="modal fade"
+          id="editProduct"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="editProductLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="editProductLabel">Edit Product</h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <form id="editProductForm">
+                <div class="modal-body">
+                  <div class="input-group">
+                    <span class="input-group-text">Product name</span>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="editProductName"
+                      required
+                    />
+                  </div>
+                  <br />
+
+                  <div class="input-group">
+                    <span class="input-group-text">Description</span>
+                    <textarea
+                      class="form-control"
+                      id="editProductDescription"
+                      required
+                    ></textarea>
+                  </div>
+                  <br />
+
+                  <div class="input-group">
+                    <span class="input-group-text">Price</span>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="editProductPrice"
+                      required
+                    />
+                    <span class="input-group-text">.00</span>
+                  </div>
+                  <br />
+
+                  <div class="input-group">
+                    <span class="input-group-text">Product image link</span>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="editProductImageLink"
+                    />
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-outline-success"
+                    data-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button type="submit" class="btn btn-success">Save</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="row" id="productsContainer"></div>
+      </section>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
