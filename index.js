@@ -219,19 +219,24 @@ editProductForm.addEventListener("submit", () => {
 // DELETING PRODUCT
 
 const deleteProduct = (index) => {
-  const currentProducts = JSON.parse(localStorage.getItem("products"));
-
-  if (index >= 0 && index < currentProducts.length) {
-    // Remove the product at the specified index using splice()
-    currentProducts.splice(index, 1);
-
-    // Save the updated products back to localStorage
-    localStorage.setItem("products", JSON.stringify(currentProducts));
-
-    // Inform the user about the successful deletion
-    alert("Product deleted successfully!");
-    window.location.reload();
+  if (confirm("Are you sure?") === false) {
+    return;
   } else {
-    console.log("Invalid index for deleting product.");
+    const currentProducts = JSON.parse(localStorage.getItem("products"));
+
+    if (index >= 0 && index < currentProducts.length) {
+      // Remove the product at the specified index using splice()
+      currentProducts.splice(index, 1);
+
+      // Save the updated products back to localStorage
+      localStorage.setItem("products", JSON.stringify(currentProducts));
+
+      // Inform the user about the successful deletion
+
+      alert("Product deleted successfully!");
+      showProducts();
+    } else {
+      console.log("Invalid index for deleting product.");
+    }
   }
 };
