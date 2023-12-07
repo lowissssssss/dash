@@ -54,6 +54,9 @@ confirmPasswordInput.addEventListener("input", () => {
   confirmPassword = confirmPasswordInput.value;
 });
 
+// UPDATING ACCOUNT FORM SUBMISSION
+// I REUSED THE REGISTER FORM FROM REGISTER.JS
+
 registerForm.addEventListener("submit", (e) => {
   e.preventDefault();
   if (password !== confirmPassword) {

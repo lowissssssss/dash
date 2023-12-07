@@ -23,6 +23,8 @@ confirmPasswordInput.addEventListener("input", () => {
   confirmPassword = confirmPasswordInput.value;
 });
 
+// REGISTER FORM SUBMISSION
+
 registerForm.addEventListener("submit", (e) => {
   e.preventDefault();
   if (password !== confirmPassword) {

@@ -12,6 +12,8 @@ passwordInput.addEventListener("input", () => {
   password = passwordInput.value;
 });
 
+// LOG IN FORM SUBMISSION
+
 loginForm.addEventListener("submit", (e) => {
   e.preventDefault();
   if (

@@ -1,3 +1,5 @@
+// REFRAIN ACCESS IF NOT LOGGED IN
+
 const isLoggedIn = JSON.parse(localStorage.getItem("isLoggedIn"));
 
 if (!isLoggedIn) {
@@ -24,6 +26,7 @@ const productsContainer = document.getElementById("productsContainer");
 
 const cartContainer = document.getElementById("cartContainer");
 const totalSale = document.getElementById("totalSale");
+const cartCount = document.getElementById("cartCount");
 
 let productName = "";
 let productDescription = "";
@@ -123,7 +126,7 @@ const productCard = (name, desc, price, link, index) => {
 
 const showProducts = () => {
   const currentProducts = JSON.parse(localStorage.getItem("products")) || [];
-
+  const cart = JSON.parse(localStorage.getItem("cart"));
   if (!currentProducts || currentProducts.length === 0) {
     productsContainer.innerHTML = "No products available.";
     return;
@@ -143,6 +146,7 @@ const showProducts = () => {
   );
 
   productsContainer.innerHTML = mappedProducts.join("");
+  cartCount.textContent = cart.length;
 };
 
 showProducts();
@@ -213,7 +217,6 @@ editProductForm.addEventListener("submit", (e) => {
     // Save the updated products back to localStorage
     localStorage.setItem("products", JSON.stringify(currentProducts));
 
-    // Inform the user about the successful update
     alert("Product updated successfully!");
     // showProducts();
   } else {
@@ -230,13 +233,9 @@ const deleteProduct = (index) => {
     const currentProducts = JSON.parse(localStorage.getItem("products"));
 
     if (index >= 0 && index < currentProducts.length) {
-      // Remove the product at the specified index using splice()
       currentProducts.splice(index, 1);
 
-      // Save the updated products back to localStorage
       localStorage.setItem("products", JSON.stringify(currentProducts));
-
-      // Inform the user about the successful deletion
 
       alert("Product deleted successfully!");
       showProducts();
@@ -276,11 +275,12 @@ const addToCart = (index) => {
     alert("Added to cart!");
   }
   showCurrentCart();
+  showProducts();
 };
 
 // VIEW CART
 
-const productCardCart = (name, desc, price, link, quantity, index) => {
+const productCardCart = (name, price, link, quantity, index) => {
   return `
     <tr >
       <td >
@@ -368,10 +368,13 @@ const removeProductFromCart = (index) => {
     localStorage.setItem("cart", JSON.stringify(cart));
     alert("Product deleted from cart successfully!");
     showCurrentCart();
+    showProducts();
   } else {
     console.log("Invalid index for deleting product from cart.");
   }
 };
+
+// UPDATE QUANTITY AND TOTAL SALE
 
 const updateQuantity = (index, newQuantity) => {
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -381,7 +384,6 @@ const updateQuantity = (index, newQuantity) => {
     localStorage.setItem("cart", JSON.stringify(cart));
     totalSale.textContent = `₱${calculateTotalPrice()}`;
     showCurrentCart();
-    // Update the display or perform other actions as needed
   } else {
     console.log("Invalid index for updating quantity in cart.");
   }
