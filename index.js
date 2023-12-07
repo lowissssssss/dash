@@ -282,12 +282,13 @@ const addToCart = (index) => {
 
 const productCardCart = (name, desc, price, link, quantity, index) => {
   return `
-    <tr>
-      <td class="w-25">
+    <tr >
+      <td >
         <img
           src="${link}"
-          class="img-fluid img-thumbnail"
+      
           alt="${link}"
+           style="width: 6rem;"
         />
       </td>
       <td>${name}</td>
@@ -297,8 +298,10 @@ const productCardCart = (name, desc, price, link, quantity, index) => {
           type="number"
           class="form-control"
           id="inputQuantity"
-          value=${quantity}
+          inputmode="numeric"
+          value="${quantity}" 
           onchange="updateQuantity(${index}, this.value)"
+          style="width: 3rem;"
         />
       </td>
       <td>₱${quantity * Number(price)}</td>
