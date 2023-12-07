@@ -53,41 +53,46 @@
         </div>
       </nav>
     </header>
-    <main>
-      <div class="mt-5 container-sm" style="max-width: 24rem">
-        <h1 class="mb-3">Login</h1>
-        <form id="loginForm">
-          <div class="mb-3 form-floating">
-            <input
-              type="email"
-              class="form-control"
-              id="floatingInputEmail"
-              placeholder="name@example.com"
-              required
-            />
-            <label for="floatingInputEmail">Email address</label>
-            <div id="emailHelp" class="form-text">
-              We'll never share your email with anyone else.
+    <main class="" style="height: 80vh">
+      <div
+        class="container-sm d-flex align-items-center justify-content-center"
+        style="max-width: 24rem; height: 100%"
+      >
+        <div class="container">
+          <h1 class="mb-3">Login</h1>
+          <form id="loginForm">
+            <div class="mb-3 form-floating">
+              <input
+                type="email"
+                class="form-control"
+                id="floatingInputEmail"
+                placeholder="name@example.com"
+                required
+              />
+              <label for="floatingInputEmail">Email address</label>
+              <div id="emailHelp" class="form-text">
+                We'll never share your email with anyone else.
+              </div>
             </div>
-          </div>
-          <div class="mb-3 form-floating">
-            <input
-              type="password"
-              class="form-control"
-              id="floatingPassword"
-              placeholder="Password"
-              required
-            />
-            <label for="floatingPassword">Password</label>
-          </div>
-          <div class="mb-3">
-            <p>
-              Doesn't have an account?
-              <span><a href="register.html">Register</a></span>
-            </p>
-          </div>
-          <button type="submit" class="btn btn-primary">Login</button>
-        </form>
+            <div class="mb-3 form-floating">
+              <input
+                type="password"
+                class="form-control"
+                id="floatingPassword"
+                placeholder="Password"
+                required
+              />
+              <label for="floatingPassword">Password</label>
+            </div>
+            <div class="mb-3">
+              <p>
+                Doesn't have an account?
+                <span><a href="register.html">Register</a></span>
+              </p>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+          </form>
+        </div>
       </div>
     </main>
     <script src="login.js"></script>

@@ -97,13 +97,22 @@
                 >
                   Edit Account
                 </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary mt-2 d-flex justify-content-between"
+                  data-toggle="modal"
+                  data-target="#changePassword"
+                  style="margin-right: 10px"
+                >
+                  Change password
+                </button>
               </div>
             </div>
           </div>
         </div>
         <!-- <button class="btn btn-primary">Edit account</button> -->
         <div>
-          <!-- Modal for Add a product-->
+          <!-- Modal for editing account-->
           <div
             class="modal fade"
             id="editAccount"
@@ -160,7 +169,7 @@
                     />
                     <label for="floatingPassword">Password</label>
                   </div>
-                  <div class="mb-3 form-floating">
+                  <!-- <div class="mb-3 form-floating">
                     <input
                       type="password"
                       class="form-control"
@@ -171,7 +180,7 @@
                     <label for="floatingConfirmPassword"
                       >Confirm Password</label
                     >
-                  </div>
+                  </div> -->
 
                   <button type="submit" class="btn btn-primary">Save</button>
                 </form>
@@ -180,6 +189,60 @@
                     Delete account
                   </button>
                 </div>
+              </div>
+            </div>
+          </div>
+          <!-- MODAL FOR CHANGING PASSWORD -->
+          <div
+            class="modal fade"
+            id="changePassword"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="changePasswordLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="changePasswordLabel">
+                    Change password
+                  </h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <br />
+                <form id="changePasswordForm" class="p-2">
+                  <div class="mb-3 form-floating">
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="floatingChangePassword"
+                      placeholder="Password"
+                      required
+                    />
+                    <label for="floatingPassword">Password</label>
+                  </div>
+                  <div class="mb-3 form-floating">
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="floatingConfirmChangePassword"
+                      placeholder="ConfirmPassword"
+                      required
+                    />
+                    <label for="floatingConfirmChangePassword"
+                      >Confirm Password</label
+                    >
+                  </div>
+
+                  <button type="submit" class="btn btn-primary">Save</button>
+                </form>
               </div>
             </div>
           </div>

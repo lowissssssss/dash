@@ -84,7 +84,7 @@ addProductForm.addEventListener("submit", () => {
 // DISPLAYING PRODUCTS
 const productCard = (name, desc, price, link, index) => {
   return `
-     <div class="col-md-4">
+     <div class="col-md-4 mb-4">
             <div class="card">
               <img
                 src="${link}"
@@ -334,19 +334,9 @@ const showCurrentCart = () => {
     return;
   }
   const mappedProducts = currentCart.map(
-    (
-      {
-        productName,
-        productDescription,
-        productPrice,
-        productImageLink,
-        quantity,
-      },
-      index
-    ) =>
+    ({ productName, productPrice, productImageLink, quantity }, index) =>
       productCardCart(
         productName,
-        productDescription,
         productPrice,
         productImageLink,
         quantity,

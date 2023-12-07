@@ -12,8 +12,14 @@ const deleteAccountBtn = document.getElementById("deleteBtn");
 const nameInput = document.getElementById("floatingInputName");
 const emailInput = document.getElementById("floatingInputEmail");
 const passwordInput = document.getElementById("floatingPassword");
-const confirmPasswordInput = document.getElementById("floatingConfirmPassword");
+// const confirmPasswordInput = document.getElementById("floatingConfirmPassword");
 const registerForm = document.getElementById("registerForm");
+const changePasswordForm = document.getElementById("changePasswordForm");
+
+const passwordChangeInput = document.getElementById("floatingChangePassword");
+const confirmChangePasswordInput = document.getElementById(
+  "floatingConfirmChangePassword"
+);
 
 const userCredentials = JSON.parse(localStorage.getItem("user"));
 
@@ -50,21 +56,53 @@ emailInput.addEventListener("input", () => {
 passwordInput.addEventListener("input", () => {
   password = passwordInput.value;
 });
-confirmPasswordInput.addEventListener("input", () => {
-  confirmPassword = confirmPasswordInput.value;
-});
+// confirmPasswordInput.addEventListener("input", () => {
+//   confirmPassword = confirmPasswordInput.value;
+// });
 
 // UPDATING ACCOUNT FORM SUBMISSION
 // I REUSED THE REGISTER FORM FROM REGISTER.JS
 
 registerForm.addEventListener("submit", (e) => {
   e.preventDefault();
+
+  const existingUser = JSON.parse(localStorage.getItem("user"));
+
+  if (password !== existingUser.password) {
+    alert("Incorrect password");
+    return;
+  } else {
+    existingUser.username = username;
+    existingUser.email = email;
+
+    localStorage.setItem("user", JSON.stringify(existingUser));
+    alert("Account updated successfully!");
+    window.location.reload();
+  }
+});
+
+// CHANGE PASSWORD
+
+passwordChangeInput.addEventListener("input", () => {
+  password = passwordChangeInput.value;
+});
+confirmChangePasswordInput.addEventListener("input", () => {
+  confirmPassword = confirmChangePasswordInput.value;
+});
+
+changePasswordForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const existingUser = JSON.parse(localStorage.getItem("user"));
+
   if (password !== confirmPassword) {
     alert("Passwords do not match!");
     return;
   } else {
-    localStorage.setItem("user", JSON.stringify({ username, email, password }));
-    alert("Account updated successfully!");
+    existingUser.password = password;
+
+    localStorage.setItem("user", JSON.stringify(existingUser));
+    alert("Password updated successfully!");
     window.location.reload();
   }
 });
