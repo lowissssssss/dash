@@ -57,34 +57,6 @@
                   >Profile</a
                 >
               </li>
-              <li class="nav-item dropdown" hidden>
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Settings
-                </a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a class="dropdown-item" href="#">Account Settings</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#">Privacy Settings</a>
-                  </li>
-                  <li><hr class="dropdown-divider" /></li>
-                  <li>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a hidden class="nav-link disabled" aria-disabled="true"
-                  >Disabled</a
-                >
-              </li>
             </ul>
 
             <button
@@ -96,7 +68,12 @@
             >
               Add a Product
             </button>
-            <button type="button" class="btn btn-primary position-relative">
+            <button
+              type="button"
+              class="btn btn-primary position-relative"
+              data-toggle="modal"
+              data-target="#cartModal"
+            >
               Cart
               <span
                 class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
@@ -279,6 +256,70 @@
           </div>
         </div>
         <div class="row" id="productsContainer"></div>
+
+        <!-- CART MODAL -->
+        <div
+          class="modal fade"
+          id="cartModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div
+            class="modal-dialog modal-lg modal-dialog-centered"
+            role="document"
+          >
+            <div class="modal-content">
+              <div class="modal-header border-bottom-0">
+                <h5 class="modal-title" id="exampleModalLabel">
+                  Your Shopping Cart
+                </h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <table class="table table-image">
+                  <thead>
+                    <tr>
+                      <th scope="col"></th>
+                      <th scope="col">Product</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Qty</th>
+                      <th scope="col">Total</th>
+                      <th scope="col">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="cartContainer"></tbody>
+                </table>
+                <div class="d-flex justify-content-end">
+                  <h5>
+                    Total:
+                    <span class="price text-success" id="totalSale"></span>
+                  </h5>
+                </div>
+              </div>
+              <div
+                class="modal-footer border-top-0 d-flex justify-content-between"
+              >
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button type="button" class="btn btn-success">Checkout</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
 
