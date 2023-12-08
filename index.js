@@ -206,6 +206,7 @@ editProductImageLinkInput.addEventListener("input", () => {
 editProductForm.addEventListener("submit", (e) => {
   // e.preventDefault();
   const currentProducts = JSON.parse(localStorage.getItem("products"));
+  const cart = JSON.parse(localStorage.getItem("cart"));
 
   // Check if the index is valid
   if (
@@ -222,6 +223,14 @@ editProductForm.addEventListener("submit", (e) => {
 
     // Save the updated products back to localStorage
     localStorage.setItem("products", JSON.stringify(currentProducts));
+
+    // update the product on the cart if it exists
+    cart[indexOfProductToEdit].productName = editProductName;
+    cart[indexOfProductToEdit].productDescription = editProductDescription;
+    cart[indexOfProductToEdit].productPrice = editProductPrice;
+    cart[indexOfProductToEdit].productImageLink = editProductImageLink;
+
+    localStorage.setItem("cart", JSON.stringify(cart));
 
     alert("Product updated successfully!");
     // showProducts();
@@ -341,6 +350,7 @@ const showCurrentCart = () => {
 
   if (!currentCart || currentCart.length === 0) {
     cartContainer.innerHTML = "Cart empty.";
+    totalSale.textContent = `₱${0}`;
     return;
   }
   const mappedProducts = currentCart.map(
@@ -350,7 +360,7 @@ const showCurrentCart = () => {
         productPrice,
         productImageLink,
         quantity,
-        index + 1
+        index
       )
   );
 
