@@ -129,7 +129,14 @@ const showProducts = () => {
   const cart = JSON.parse(localStorage.getItem("cart"));
   if (!currentProducts || currentProducts.length === 0) {
     productsContainer.innerHTML = "No products available.";
+    cartCount.textContent = 0;
     return;
+  }
+
+  if (cart === null) {
+    cartCount.textContent = 0;
+  } else {
+    cartCount.textContent = cart.length;
   }
   const mappedProducts = currentProducts.map(
     (
@@ -146,7 +153,6 @@ const showProducts = () => {
   );
 
   productsContainer.innerHTML = mappedProducts.join("");
-  cartCount.textContent = cart.length;
 };
 
 showProducts();
@@ -231,6 +237,7 @@ const deleteProduct = (index) => {
     return;
   } else {
     const currentProducts = JSON.parse(localStorage.getItem("products"));
+    const cart = JSON.parse(localStorage.getItem("cart"));
 
     if (index >= 0 && index < currentProducts.length) {
       currentProducts.splice(index, 1);
@@ -238,6 +245,9 @@ const deleteProduct = (index) => {
       localStorage.setItem("products", JSON.stringify(currentProducts));
 
       alert("Product deleted successfully!");
+
+      if (cart !== null) removeProductFromCart(index);
+
       showProducts();
     } else {
       console.log("Invalid index for deleting product.");
@@ -340,7 +350,7 @@ const showCurrentCart = () => {
         productPrice,
         productImageLink,
         quantity,
-        index
+        index + 1
       )
   );
 
