@@ -14,30 +14,38 @@ passwordInput.addEventListener("input", () => {
 
 // LOG IN FORM SUBMISSION
 
+// UPDATED
 loginForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  if (
-    localStorage.getItem("user") === "" ||
-    localStorage.getItem("user") === null
-  ) {
-    alert("User doesn't exist");
+
+  // Retrieve users from localStorage
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+
+  if (users.length === 0) {
+    alert("No users registered. Please sign up.");
     return;
   }
-  const currentUserRegistered = JSON.parse(localStorage.getItem("user"));
-  if (email !== currentUserRegistered.email || currentUserRegistered === "") {
+
+  // Find the user by email
+  const currentUser = users.find((user) => user.email === email);
+
+  if (!currentUser) {
     alert("User doesn't exist.");
     return;
   }
 
-  if (password !== currentUserRegistered.password) {
+  if (password !== currentUser.password) {
     alert("Incorrect password!");
     return;
-  } else {
-    localStorage.setItem("isLoggedIn", JSON.stringify(true));
-
-    alert("Login success");
-    emailInput.value = "";
-    passwordInput.value = "";
-    window.location.href = "profile.html";
   }
+
+  localStorage.setItem(
+    "isLoggedIn",
+    JSON.stringify({ status: true, currentUser })
+  );
+
+  alert("Login successful");
+  emailInput.value = "";
+  passwordInput.value = "";
+  window.location.href = "profile.html";
 });

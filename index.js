@@ -84,7 +84,30 @@ addProductForm.addEventListener("submit", () => {
 // DISPLAYING PRODUCTS
 const productCard = (name, desc, price, link, index) => {
   return `
-     <div class="col-md-4 mb-4">
+     <div class="col-md-4 mb-4" onclick="viewProduct(${index})" style="cursor: pointer;" data-toggle="modal"
+              data-target="#viewProduct">
+            <div class="card">
+              <img
+                src="${link}"
+                alt="${link}"
+                style="width: 100%"
+              />
+              <div class="card-body">
+                <h5 class="card-title">${name}</h5>
+               
+                <p>
+                  Price: ₱${price}
+                </p>
+              </div>
+             
+            </div>
+          </div>
+    `;
+};
+
+const viewProductCard = (name, desc, price, link, index) => {
+  return `
+     <div class="col-md-4 mb-4" onclick="viewProduct(${index})" style="width: 100%;">
             <div class="card">
               <img
                 src="${link}"
@@ -115,7 +138,7 @@ const productCard = (name, desc, price, link, index) => {
                             Edit
                         </button>
                     </div>
-                    <button type="button" class="btn btn-outline-success" onclick="addToCart(${index})">
+                     <button type="button" class="btn btn-outline-success" onclick="addToCart(${index})">
                         Add to cart
                     </button>
               </div>
@@ -156,6 +179,22 @@ const showProducts = () => {
 };
 
 showProducts();
+
+const viewProduct = (index) => {
+  const product = JSON.parse(localStorage.getItem("products"));
+
+  const { productName, productDescription, productPrice, productImageLink } =
+    product[index];
+  const renderProduct = viewProductCard(
+    productName,
+    productDescription,
+    productPrice,
+    productImageLink,
+    index
+  );
+  viewProductContainer.innerHTML = renderProduct;
+  // console.log(product[index]);
+};
 
 // EDITING PRODUCT
 let indexOfProductToEdit; // SELECTING CURRENT PRODUCT VIA INDEX FOR EDITING
@@ -225,12 +264,14 @@ editProductForm.addEventListener("submit", (e) => {
     localStorage.setItem("products", JSON.stringify(currentProducts));
 
     // update the product on the cart if it exists
-    cart[indexOfProductToEdit].productName = editProductName;
-    cart[indexOfProductToEdit].productDescription = editProductDescription;
-    cart[indexOfProductToEdit].productPrice = editProductPrice;
-    cart[indexOfProductToEdit].productImageLink = editProductImageLink;
+    if (cart[indexOfProductToEdit] !== undefined) {
+      cart[indexOfProductToEdit].productName = editProductName;
+      cart[indexOfProductToEdit].productDescription = editProductDescription;
+      cart[indexOfProductToEdit].productPrice = editProductPrice;
+      cart[indexOfProductToEdit].productImageLink = editProductImageLink;
 
-    localStorage.setItem("cart", JSON.stringify(cart));
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
 
     alert("Product updated successfully!");
     // showProducts();

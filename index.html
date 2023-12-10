@@ -20,8 +20,7 @@
   <script defer src="./index.js"></script>
   <style>
     body {
-      background: #654ea3;
-      background: linear-gradient(to right, #3494e6, #ec6ead);
+      background: #222222;
       min-height: 100vh;
       overflow-x: hidden;
     }
@@ -167,13 +166,44 @@
                 </div>
               </div>
             </div>
+
+            <!-- MODAL FOR VIEW PRODUCT -->
+
+            <div
+              class="modal fade"
+              id="viewProduct"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="viewProductLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="viewProductLabel">Product</h5>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div id="viewProductContainer" class="modal-body"></div>
+                  <div class="modal-footer"></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </nav>
     </header>
     <main>
       <section class="container pb-5">
-        <h1 class="mt-5">Products</h1>
+        <div class="mt-" style="text-align: center; margin-bottom: 10px;">
+          <img src="logoo.png" style="width: 350px; height: 250px;"/>
+        </div>
 
         <!-- EDIT PRODUCT MODAL -->
         <div

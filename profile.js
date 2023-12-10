@@ -21,30 +21,48 @@ const confirmChangePasswordInput = document.getElementById(
   "floatingConfirmChangePassword"
 );
 
-const userCredentials = JSON.parse(localStorage.getItem("user"));
+const session = JSON.parse(localStorage.getItem("isLoggedIn"));
 
-displayUsername.textContent = `${userCredentials.username}`;
-displayEmail.textContent = `Email: ${userCredentials.email}`;
+displayUsername.textContent = `${session.currentUser.username}`;
+displayEmail.textContent = ` ${session.currentUser.email}`;
 
 logoutBtn.addEventListener("click", () => {
-  localStorage.setItem("isLoggedIn", "false");
+  const isLoggedIn = {
+    status: false,
+    currentUser: {},
+  };
+  localStorage.setItem("isLoggedIn", JSON.stringify(isLoggedIn));
   alert("Logged out");
   window.location.href = "login.html";
 });
 
+// UPDATED
+
 deleteAccountBtn.addEventListener("click", () => {
-  localStorage.setItem("user", "");
-  localStorage.setItem("isLoggedIn", "false");
+  const isLoggedIn = JSON.parse(localStorage.getItem("isLoggedIn"));
+  const currentUser = isLoggedIn.currentUser;
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+
+  // Remove the current user from the users array based on email
+  const updatedUsers = users.filter((user) => user.email !== currentUser.email);
+  localStorage.setItem("users", JSON.stringify(updatedUsers));
+
+  // Update the isLoggedIn status to false and clear the currentUser
+  isLoggedIn.status = false;
+  isLoggedIn.currentUser = {};
+  localStorage.setItem("isLoggedIn", JSON.stringify(isLoggedIn));
+
+  alert("Account deleted successfully!");
   window.location.href = "login.html";
 });
 
-let username = userCredentials.username;
-let email = userCredentials.email;
+let username = session.currentUser.username;
+let email = session.currentUser.email;
 let password = "";
 let confirmPassword = "";
 
-nameInput.value = userCredentials.username;
-emailInput.value = userCredentials.email;
+nameInput.value = session.currentUser.username;
+emailInput.value = session.currentUser.email;
 
 nameInput.addEventListener("input", () => {
   username = nameInput.value;
@@ -56,26 +74,40 @@ emailInput.addEventListener("input", () => {
 passwordInput.addEventListener("input", () => {
   password = passwordInput.value;
 });
-// confirmPasswordInput.addEventListener("input", () => {
-//   confirmPassword = confirmPasswordInput.value;
-// });
 
-// UPDATING ACCOUNT FORM SUBMISSION
-// I REUSED THE REGISTER FORM FROM REGISTER.JS
-
+// UPDATED
 registerForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const existingUser = JSON.parse(localStorage.getItem("user"));
+  const isLoggedIn = JSON.parse(localStorage.getItem("isLoggedIn"));
+  const currentUser = isLoggedIn.currentUser;
+  const users = JSON.parse(localStorage.getItem("users")) || [];
 
-  if (password !== existingUser.password) {
+  if (password !== currentUser.password) {
     alert("Incorrect password");
     return;
   } else {
-    existingUser.username = username;
-    existingUser.email = email;
+    const previousEmail = currentUser.email; // Store the previous email
 
-    localStorage.setItem("user", JSON.stringify(existingUser));
+    // Update current user's details
+    currentUser.username = username;
+    currentUser.email = email;
+
+    // Update current user in isLoggedIn
+    isLoggedIn.currentUser = currentUser;
+    localStorage.setItem("isLoggedIn", JSON.stringify(isLoggedIn));
+
+    // Update user in the users array based on previousEmail
+    const updatedUsers = users.map((user) => {
+      if (user.email === previousEmail) {
+        // Use previousEmail for comparison
+        return { ...user, username, email }; // Update username and email fields
+      }
+      return user;
+    });
+
+    localStorage.setItem("users", JSON.stringify(updatedUsers));
+
     alert("Account updated successfully!");
     window.location.reload();
   }
@@ -90,18 +122,35 @@ confirmChangePasswordInput.addEventListener("input", () => {
   confirmPassword = confirmChangePasswordInput.value;
 });
 
+// UPDATED
 changePasswordForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const existingUser = JSON.parse(localStorage.getItem("user"));
+  const isLoggedIn = JSON.parse(localStorage.getItem("isLoggedIn"));
+  const currentUser = isLoggedIn.currentUser;
 
   if (password !== confirmPassword) {
     alert("Passwords do not match!");
     return;
   } else {
-    existingUser.password = password;
+    // Update the password for the current user
+    currentUser.password = password;
 
-    localStorage.setItem("user", JSON.stringify(existingUser));
+    // Update the current user in isLoggedIn
+    isLoggedIn.currentUser = currentUser;
+    localStorage.setItem("isLoggedIn", JSON.stringify(isLoggedIn));
+
+    // Update the password for the user in the users array based on email
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const updatedUsers = users.map((user) => {
+      if (user.email === currentUser.email) {
+        return { ...user, password };
+      }
+      return user;
+    });
+
+    localStorage.setItem("users", JSON.stringify(updatedUsers));
+
     alert("Password updated successfully!");
     window.location.reload();
   }

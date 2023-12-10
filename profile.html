@@ -16,15 +16,42 @@
       crossorigin="anonymous"
     ></script>
     <title>Profile</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.15.0/font/bootstrap-icons.css">
+    <script src="https://kit.fontawesome.com/3929e16ef5.js" crossorigin="anonymous"></script>
+     <script src="{% static 'network/functions.js' %}"></script>
+    <link href="https://fonts.cdnfonts.com/css/american-captain-2" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/brushland" rel="stylesheet">
+    
   </head>
 
   <style>
     body {
-      background: #654ea3;
-      background: linear-gradient(to right, #3494e6, #ec6ead);
+      background: #272728;
       min-height: 100vh;
       overflow-x: hidden;
     }
+
+
+.social-link {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #a4a2a2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    border-radius: 50%;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+}
+
+.social-link:hover, .social-link:focus {
+    background: #ddd;
+    text-decoration: none;
+    color: #555;
+}
   </style>
   <body>
     <header>
@@ -68,48 +95,62 @@
     <!-- MAIN CONTENT  -->
     <main>
       <section class="container">
-        <div class="row py-5 px-4">
-          <div class="col-md-5 mx-auto">
-            <!-- Profile widget -->
-            <h1>Profile</h1>
-            <div class="bg-white shadow rounded overflow-hidden">
-              <div class="px-4 pt-0 pb-4 cover">
-                <div class="media align-items-end profile-head">
-                  <div class="profile mr-3">
-                    <img
-                      src="https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png"
-                      alt="..."
-                      width="130"
-                      class="rounded mb-2 mt-3"
-                    />
-                  </div>
-                  <div class="media-body mb-5">
-                    <h4 class="mt-0 mb-0" id="displayUsername"></h4>
-                    <p id="displayEmail"></p>
-                  </div>
-                </div>
-                <button
+        
+        <div class="container py-5">
+          <div class="row text-center text-white">
+              <div class="col-lg-8 mx-auto">
+                  <h1 class="display-4" style="font-family: 'American Captain', sans-serif; font-size: 100px;">Welcome to our shop!</h1>
+                  <p class="lead mb-0" style="font-family:'Brushland', sans-serif; font-size: 15px;">"Unleash confidence in every outfit discover - your power wardrobe with us."</p>
+              </div>
+          </div>
+      </div><!-- End -->
+      
+      
+      <div class="container">
+          <div class="row text-center">
+      
+              <!-- Team item -->
+              <div class="col-xl-3 col-sm-6 mb-5" style="margin: auto;
+              width: 40%;
+              padding-bottom: 100px;
+              padding: 10px;">
+                  <div class="bg-white rounded shadow-sm py-4 px-4" ><img src="https://cdn-icons-png.flaticon.com/512/597/597228.png" alt="" width="150" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                      <h5 class="mb-0" id="displayUsername" style="font-size: 50px;"></h5><span class="small text-muted" id="displayEmail" style="font-size: 20px;"></span>
+                      <ul class="social mb-25 list-inline mt-3" >
+                          <li class="list-inline-item"><a href="https://www.facebook.com/" target="_blank" class="social-link"><i class="fa fa-facebook-f"></i></a></li>
+                          <li class="list-inline-item"><a href="https://twitter.com/" target="_blank" class="social-link"><i class="fa fa-twitter"></i></a></li>
+                          <li class="list-inline-item"><a href="https://www.instagram.com/" target="_blank" class="social-link"><i class="fa fa-instagram"></i></a></li>
+                          <li class="list-inline-item"><a href="https://www.linkedin.com/login" target="_blank" class="social-link"><i class="fa fa-linkedin"></i></a></li>
+                      </ul >
+                      <div style="display: flex; margin-left: 85px;">
+                        <button
                   type="button"
                   class="btn btn-primary d-flex justify-content-between"
                   data-toggle="modal"
                   data-target="#editAccount"
-                  style="margin-right: 10px"
+                  style="margin-right: 10px; font-size: 15px;"
                 >
                   Edit Account
                 </button>
+
                 <button
                   type="button"
-                  class="btn btn-secondary mt-2 d-flex justify-content-between"
+                  class="btn btn-secondary d-flex justify-content-between"
                   data-toggle="modal"
                   data-target="#changePassword"
-                  style="margin-right: 10px"
+                  style="margin-right: 10px; font-size: 15px;"
                 >
                   Change password
                 </button>
-              </div>
-            </div>
+                      </div>
+                      
+                
+                  </div>
+              </div><!-- End -->
+              
           </div>
-        </div>
+      </div>
+
         <!-- <button class="btn btn-primary">Edit account</button> -->
         <div>
           <!-- Modal for editing account-->
@@ -169,19 +210,6 @@
                     />
                     <label for="floatingPassword">Password</label>
                   </div>
-                  <!-- <div class="mb-3 form-floating">
-                    <input
-                      type="password"
-                      class="form-control"
-                      id="floatingConfirmPassword"
-                      placeholder="ConfirmPassword"
-                      required
-                    />
-                    <label for="floatingConfirmPassword"
-                      >Confirm Password</label
-                    >
-                  </div> -->
-
                   <button type="submit" class="btn btn-primary">Save</button>
                 </form>
                 <div class="mb-3 px-2">

@@ -25,15 +25,33 @@ confirmPasswordInput.addEventListener("input", () => {
 
 // REGISTER FORM SUBMISSION
 
+// UPDATED
 registerForm.addEventListener("submit", (e) => {
   e.preventDefault();
   if (password !== confirmPassword) {
     alert("Passwords do not match!");
     return;
-  } else {
-    localStorage.setItem("user", JSON.stringify({ username, email, password }));
-
-    alert("Successfully registered! You may now login.");
-    window.location.href = "login.html";
   }
+
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+
+  // Check if the email already exists
+  const emailExists = users.some((user) => user.email === email);
+
+  if (emailExists) {
+    alert("Email already exists. Please use a different email.");
+    return;
+  }
+
+  const newUser = {
+    username,
+    email,
+    password,
+  };
+
+  // Add the new user to the existing users array
+  localStorage.setItem("users", JSON.stringify([...users, newUser]));
+
+  alert("Successfully registered! You may now login.");
+  window.location.href = "login.html";
 });
